@@ -1,5 +1,5 @@
 import { useFrame } from '@react-three/fiber'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { useIsNear } from './isNear'
 import { useRecoilValue } from "recoil";
 import { ballPositionState } from './gameState';

@@ -5,9 +5,10 @@ const Hud = ({data, setHudKey}) => {
     <>
     {data ?
     <div className="Hud" >
+      <img id="img" src="assets/face.png"/>
       <div className="info">
-        <img id="img" src="assets/face.png"/>
         <h1>{data.title}</h1>
+        <p>£100</p>
       </div>
     </div> : null }
     </>

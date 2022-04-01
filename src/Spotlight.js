@@ -1,10 +1,14 @@
+import { SpotLight } from 'three';
+import { useMemo } from 'react';
 
 
-function Spotlight() {
-  // This reference gives us direct access to the THREE.Mesh object
-  return (
-    <spotLight intensity={1} position={[0, 10, 0]} lookAt={[0, 0, 0]} penumbra={0.4} castShadow/>
+export const Spotlight = ({posX, posY, posZ}) => {
+  const light = useMemo(() => new SpotLight(0xffffff), [])
+
+  return (  
+    <>
+     <primitive object={light} castShadow penumbra={0.2} position={[posX, posY+10, posZ]} />
+     <primitive object={light.target} position={[posX, posY, posZ]} />
+    </>
   )
 }
-
-export default Spotlight;
