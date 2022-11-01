@@ -1,23 +1,21 @@
-import { useFrame } from '@react-three/fiber'
-import { useRef } from 'react'
-import { useIsNear } from './isNear'
-import { useRecoilValue } from "recoil";
-import { ballPositionState } from './gameState';
+import { memo } from 'react';
 
-const Box = ({position, setHudKey, hudKey}) => {
-  const ref = useRef()
-  const ballPosition = useRecoilValue(ballPositionState)
-  const isNear = useIsNear(ballPosition, {x:0,y:0,z:0}, 5);
-  useFrame((state, delta) => isNear ? setHudKey(hudKey) : setHudKey(undefined))
+const Box = ({ data }) => {
+
   return (
-    <mesh
-      {...position}
-      ref={ref}
-      scale={1}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color='orange' />
-    </mesh>
+    Object.keys(data).map((i) => {
+      let marker = data[i]
+      return (
+        <mesh
+          key={i}
+          position={[marker.x, 0, marker.z]}
+          scale={1}>
+          <boxGeometry args={[1, 1, 1]} />
+          <meshBasicMaterial color='orange' />
+        </mesh>
+      )
+    })
   )
 }
 
-export default Box;
+export default memo(Box);

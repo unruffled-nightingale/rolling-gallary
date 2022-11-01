@@ -1,60 +1,58 @@
-import { useFrame, useThree } from '@react-three/fiber'
-import { useTexture , Shadow} from '@react-three/drei'
-import { useKeyboard } from "./useKeyboard";
-import { useRecoilState } from "recoil";
-import { ballPositionState } from "./gameState";
+import { useFrame } from '@react-three/fiber'
+import { useTexture } from '@react-three/drei'
 import { useSphere } from '@react-three/cannon'
-import { useRef } from "react"
+import { useRef } from 'react';
 
 
-function Ball(props) {
-  // This reference gives us direct access to the THREE.Mesh object
-  const initPosition = [-120, 1, -40]
-  const cameraOffset = {x: 15,  y: 15, z: 10}
+function Ball({ data, setHudKey, movement }) {
+
+  const counter = useRef(0);
+  const cameraOffset = { x: 3, y: 30, z: -1 }
+  const ballPosRef = useRef([-50, 1, -35])
+  let x;
+  let z;
+  const colorMap = useTexture('assets/ball.png');
+  const { moveForward, moveBackward, moveLeft, moveRight } = movement;
 
   const [ref, api] = useSphere(() => ({
     args: [1, 64],
     mass: 3,
-    position: initPosition,
+    position: [ballPosRef.current[0], ballPosRef.current[1], ballPosRef.current[2]],
     angularDamping: 0.5,
-    rotation: [2.7,0.4,-0.7]
+    rotation: [3.2, 1.5, 0]
   }))
 
-  const [ballPos, setBallPosition] = useRecoilState(ballPositionState);
-  const pos = useRef(initPosition)
-
-  const camera = useThree((state) => state.camera)
-
-  const colorMap = useTexture('assets/eye2.png');
-  const { moveForward, moveBackward, moveLeft, moveRight } = useKeyboard();
-
   useFrame((state, delta) => {
-    api.applyImpulse([(moveForward - moveBackward) , 0, (moveRight - moveLeft)], [0,0,0])
-    api.position.subscribe(p => pos.current = p)
-    camera.position.set(pos.current[0] - cameraOffset.x, cameraOffset.y, pos.current[2] - cameraOffset.z );
-    console.log(camera.position)
-    setBallPosition({
-        x: Number(pos.current[0]),
-        z: Number(pos.current[2])
-    })
-    pos.current[0] != -120 || pos.current[2] != -40 ? props.setBallMoved(true) : props.setBallMoved(false) 
+    counter.current++
+    api.applyImpulse([(moveForward - moveBackward), 0, (moveRight - moveLeft)], [0, 0, 0])
+    api.position.subscribe(p => ballPosRef.current = p)
+    x = ballPosRef.current[0]
+    z = ballPosRef.current[2]
+    state.camera.position.set(x - cameraOffset.x, cameraOffset.y, z - cameraOffset.z);
+
+    if (counter.current % 10 === 0) {
+      let nearest = data.filter(i => Math.abs(i.x - x) < 5 && Math.abs(i.z - z) < 5)
+      if (nearest.length > 0) {
+        setHudKey(nearest[0])
+      } else {
+        setHudKey(undefined)
+      }
+    }
   })
 
-  return (  
+  return (
     <>
-     {/* <Spotlight posX={ballPos.x} posY={0} posZ={ballPos.z}/> */}
-    <mesh
-      castShadow
-      {...props}
-      ref={ref}
-      scale={1}>
-      <sphereGeometry args={[1, 64]} />
-      <meshBasicMaterial 
-        map={colorMap}
-        toneMapped={false}
-      />
-    </mesh>
-  </>
+      <mesh
+        castShadow
+        ref={ref}
+        scale={1.5}>
+        <sphereGeometry args={[1, 64]} />
+        <meshBasicMaterial
+          map={colorMap}
+          toneMapped={false}
+        />
+      </mesh>
+    </>
   )
 }
 
