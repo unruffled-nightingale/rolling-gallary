@@ -2,6 +2,7 @@ import PictureBanner from './PictureBanner.js'
 import IntroBanner from './IntroBanner.js'
 import MobileControls from './MobileControls.js';
 import DesktopControls from './DesktopControls.js';
+import AudioButton from './AudioButton.js';
 import { isMobile } from 'react-device-detect';
 
 
@@ -11,6 +12,7 @@ const Hud = ({ picture, invisible, setMovement }) => {
     <>
       <PictureBanner picture={picture} />
       <IntroBanner invisible={invisible} />
+      <AudioButton />
       {
         isMobile ?
           <MobileControls setMovement={setMovement} /> :
