@@ -1,10 +1,10 @@
-import World from './World.js';
+import World from './components/World/World.js';
 import { useState } from "react"
 import './App.css'
-import Hud from './Huds.js';
+import Hud from './components/Hud/Huds.js';
 import {useEffect} from 'react';
-import { useMovement } from './useMovement.js';
-import {data} from './Data';
+import { useMovement } from './hooks/useMovement.js';
+import {data} from './data.js';
 
 function App() {
 
