@@ -22,7 +22,7 @@ function App() {
     <div className="App">
       <Hud picture={hudKey} invisible={moved} setMovement={setMovement}/>      
       <div  className={"curtain " + (loaded ? 'fadeOut' : "")} ></div>
-      <World data={data} setHudKey={setHudKey} movement={movement} moved={moved}/>
+      <World data={data} setHudKey={setHudKey} movement={movement}/>
 
     </div>
   );
