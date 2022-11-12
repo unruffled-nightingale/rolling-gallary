@@ -7275,9 +7275,9 @@ react-is@^17.0.1:
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
 react-joystick-component@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/react-joystick-component/-/react-joystick-component-4.0.1.tgz#c70a76d1dc8fdb2b9713657b0bb905dafe965ada"
-  integrity sha512-efPaCNoDIiBNs0eUjsrE4Q+q4h5zXDqBs54vTMYSPv73useSl8VsJJeOburMHuxwsS4HoqqMu12Aav9SM7Usew==
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/react-joystick-component/-/react-joystick-component-4.1.0.tgz#4e194466df03a7339e79d2768de53b3f53d1ecc5"
+  integrity sha512-ucwcyejLtdE3EUC4A1nbmaky30G3wetJ+T2/tTSj05piciBFazoU08rmXaohruhtmZn8WlcFzZid6J9/kKIOEQ==
 
 react-merge-refs@^1.1.0:
   version "1.1.0"
