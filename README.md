@@ -41,7 +41,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### `yarn docker:build`
 
-Builds docker image of the production app with the name `emoji-art`.
+Builds docker image of the production app with the name `simms`.
 
 
 ### `yarn docker:run`
