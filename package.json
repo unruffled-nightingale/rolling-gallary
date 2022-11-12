@@ -9,6 +9,8 @@
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "cross-var": "^1.1.0",
+    "dotenv-cli": "^6.0.0",
     "react": "^17.0.2",
     "react-device-detect": "^2.2.2",
     "react-dom": "^17.0.2",
@@ -22,7 +24,13 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docker:build": "docker build -t simms .",
+    "docker:run": "yarn run docker:build; docker run -p 3002:80 -d simms",
+    "docker:tag": "yarn run docker:build; dotenv cross-var docker tag simms %DOCKER_REGISTRY%/simms:latest",
+    "docker:push": "yarn run docker:tag; dotenv cross-var docker push %DOCKER_REGISTRY%/simms:latest",
+    "kube:apply": "yarn run docker:push; kubectl apply -f ./kube/deployment.yaml",
+    "kube:redeploy": "yarn run docker:push; kubectl rollout restart deploy simms"
   },
   "eslintConfig": {
     "extends": [

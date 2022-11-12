@@ -11,18 +11,12 @@ function App() {
   const [hudKey, setHudKey] = useState(undefined);
   const [loaded, setLoaded] = useState(false);
   const [movement, setMovement, moved] = useMovement();
-  
-  useEffect(() => {
-    setTimeout(() => {
-      setLoaded(true)
-    }, 100);
-  }, [])
 
   return (
     <div className="App">
       <Hud picture={hudKey} invisible={moved} setMovement={setMovement}/>      
       <div  className={"curtain " + (loaded ? 'fadeOut' : "")} ></div>
-      <World data={data} setHudKey={setHudKey} movement={movement}/>
+      <World data={data} setHudKey={setHudKey} movement={movement} setLoaded={setLoaded}/>
 
     </div>
   );

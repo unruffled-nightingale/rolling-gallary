@@ -13,6 +13,7 @@
 }
 .fadeOut {
   opacity: 0;
+  transition-delay: 1s;
   transition: opacity 3s;
   transition-timing-function: cubic-bezier(0.22, 0, 1, 1);
 }

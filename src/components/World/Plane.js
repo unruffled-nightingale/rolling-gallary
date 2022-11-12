@@ -2,9 +2,9 @@ import { usePlane } from '@react-three/cannon'
 import { TextureLoader } from 'three/src/loaders/TextureLoader'
 import { useLoader } from '@react-three/fiber'
 
-function Plane() {
+function Plane({setLoaded}) {
   usePlane(() => ({ rotation: [-Math.PI / 2, 0, 0], mass: 0 }))
-  const colorMap = useLoader(TextureLoader, 'assets/background.svg')
+  const colorMap = useLoader(TextureLoader, 'assets/background.svg', () => setLoaded(true))
 
   return (
     <mesh receiveShadow scale={[200, 0.1, 200]} position={[0,0,0]} >

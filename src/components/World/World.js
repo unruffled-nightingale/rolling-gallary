@@ -10,7 +10,7 @@ import {memo} from 'react';
 
 const SHOW_MARKERS = false
 
-function World({data, setHudKey, movement}) {
+function World({data, setHudKey, movement, setLoaded}) {
   const cameraPosition = [-40, 105, 0]
   
   return (
@@ -33,7 +33,7 @@ function World({data, setHudKey, movement}) {
               <Wall rotation={[-Math.PI / 2, 0, -Math.PI / 2]} scale={[200, 1, 1]} position={[100, 0, 0]}/>
               <Ball setHudKey={setHudKey} data={data} movement={movement} />
               {SHOW_MARKERS && <Box data={data} />}
-              <Plane />
+              <Plane setLoaded={setLoaded}/>
             </Suspense>
           </RecoilRoot>
         </Physics>
