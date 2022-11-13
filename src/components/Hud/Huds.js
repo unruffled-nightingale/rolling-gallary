@@ -6,13 +6,13 @@ import AudioButton from './AudioButton.js';
 import { isMobile } from 'react-device-detect';
 
 
-const Hud = ({ picture, invisible, setMovement }) => {
+const Hud = ({ picture, invisible, setMovement, loaded }) => {
 
   return (
     <>
       <PictureBanner picture={picture} />
-      <IntroBanner invisible={invisible} />
-      <AudioButton />
+      <IntroBanner invisible={invisible} loaded={loaded}/>
+      {/* <AudioButton /> */}
       {
         isMobile ?
           <MobileControls setMovement={setMovement} /> :
