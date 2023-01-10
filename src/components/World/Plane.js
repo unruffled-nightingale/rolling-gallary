@@ -4,7 +4,7 @@ import { useLoader } from '@react-three/fiber'
 
 function Plane({setLoaded}) {
   usePlane(() => ({ rotation: [-Math.PI / 2, 0, 0], mass: 0 }))
-  const colorMap = useLoader(TextureLoader, 'assets/background.svg', () => {console.log("loaded")})
+  const colorMap = useLoader(TextureLoader, 'assets/background.jpeg', () => setLoaded(true))
 
   return (
     <mesh receiveShadow scale={[200, 0.1, 200]} position={[0,0,0]} >
