@@ -10,8 +10,8 @@ function Plane({setLoaded}) {
     <mesh receiveShadow scale={[200, 0.1, 200]} position={[0,0,0]} >
       <boxGeometry args={[1, 1, 1]} />
       <meshBasicMaterial 
-      map={colorMap} 
-      toneMapped={false}
+        map={colorMap} 
+        toneMapped={false}
       />
     </mesh>
   )

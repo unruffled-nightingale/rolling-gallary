@@ -2,20 +2,19 @@ import './IntroBanner.css'
 import { useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 
-const IntroBanner = ({ invisible }) => {
+const IntroBanner = ({ invisible, loaded }) => {
 
   const [controlsVisible, setControlsVisible] = useState(false);
 
   useEffect(() => {
+    if (!loaded) return
     setTimeout(() => {
       setControlsVisible(true)
     }, 3000);
-  }, [])
+  }, [loaded])
 
   return (
     <div className={"IntroBanner " + (invisible ? 'fadeOutBanner' : "")}>
-      <p>works by susannah simms</p>
-      <p></p>
       <div className={"controls " + (controlsVisible && !invisible ? 'fadeInControls' : "")}>
         {!isMobile ?
           <>
@@ -26,9 +25,13 @@ const IntroBanner = ({ invisible }) => {
           <>
           <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;use joystick</p>
           <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to move </p>
+          <p></p>
         </>
         }
       </div>
+      <p></p>
+      <p></p>
+      <p>works by susannah simms</p>
     </div>
   );
 }
